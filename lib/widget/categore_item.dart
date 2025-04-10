@@ -59,6 +59,7 @@ class _CategoreItemState extends State<CategoreItem> {
           ),
           // إضافة أيقونة "المفضلة" في الزاوية العليا
           Positioned(
+            
             top: 8, // Adjusted position
             right: 8, // Adjusted position
             child: GestureDetector( // استخدام GestureDetector
