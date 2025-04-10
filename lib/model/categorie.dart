@@ -16,8 +16,9 @@ class Categorie {
   // كونستراكتور
   const Categorie({
     required this.id,
-    // required this.title,
     
+    // required this.title,
+
     required this.name,
     required this.imgUrl,
     required this.description
