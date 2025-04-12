@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/categorie.dart';
+import 'package:flutter_app/screens/details.dart';
 
 class CategoreItem extends StatefulWidget {
   const CategoreItem({
@@ -31,10 +32,24 @@ class _CategoreItemState extends State<CategoreItem> {
       height: 250,
       child: Stack(
         children: [
+          // إضافة GestureDetector حول الصورة
           Positioned.fill(
-            child: Image.network(
-              widget.imgUrl,
-              fit: BoxFit.cover,
+            child: GestureDetector(
+              onTap: () {
+                // عند الضغط على الصورة، يتم الانتقال إلى صفحة التفاصيل مع إرسال المعرف
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => details(
+                      id: widget.id, // إرسال id الفئة
+                    ),
+                  ),
+                );
+              },
+              child: Image.network(
+                widget.imgUrl,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           // خلفية خفيفة خلف النص لتكون مقروءة
@@ -59,10 +74,9 @@ class _CategoreItemState extends State<CategoreItem> {
           ),
           // إضافة أيقونة "المفضلة" في الزاوية العليا
           Positioned(
-
             top: 9, // Adjusted position
             right: 8, // Adjusted position
-            child: GestureDetector( // استخدام GestureDetector
+            child: GestureDetector(
               onTap: () {
                 setState(() {
                   isFavorite = !isFavorite; // تغيير حالة الأيقونة عند النقر

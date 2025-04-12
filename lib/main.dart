@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
+import 'package:flutter_app/socket.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'travel App',
+      title: 'Booking',
       theme: ThemeData(
       
         // This is the theme of your application.
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
    debugShowCheckedModeBanner :false,
-      home: CategoriesScreen(),
+      // home: CategoriesScreen(),
+      home:ChatScreen(),
     );
   }
 }
