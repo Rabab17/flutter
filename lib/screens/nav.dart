@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/categories_screen.dart';
 
 class Nav extends StatefulWidget {
   const Nav({super.key});
@@ -32,36 +33,40 @@ class _NavState extends State<Nav> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Booking.com",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  GestureDetector( // تم تصحيح من guestureDector إلى GestureDetector
+                    onTap: () { // تم نقل onPressed إلى هنا
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategoriesScreen()  // تمرير قائمة المفضلات
+                        )
+                      );
+                    },
+                    child: Text(
+                
+                      "Booking.com",
+                      style: TextStyle(
+                        
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Row(
                     children: [
                       CircleAvatar(
-                        child: Icon(Icons.person, color: Colors.white),
+                        child: Icon(Icons.notification_add, color: Colors.white),
                         radius: 20,
                         backgroundColor: Colors.transparent,
                       ),
-                      SizedBox(width: 8),
-                      IconButton(
-                        icon: Icon(Icons.menu, color: Colors.white),
-                        onPressed: () {},
-                      ),
+                      
                     ],
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text("Status", style: TextStyle(fontSize: 18, color: Colors.red,)),
-            ),
-              SizedBox(height: 20),
+       
           
             // Padding(
             //   padding: const EdgeInsets.all(16.0),
@@ -87,12 +92,6 @@ class _NavState extends State<Nav> {
             //           fontSize: 24,
             //           fontWeight: FontWeight.bold,
             //         ),)
-
-
-
-                 
-                
-                 
             //     ],
             //   ),
             // ),
