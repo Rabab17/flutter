@@ -27,34 +27,36 @@ class _FavorState extends State<Favor> {
           final categorie = widget.favorites[index]; // الحصول على العنصر المفضل
           return Card(
             margin: EdgeInsets.all(8),
-            child: Row( // استخدام Row لتقسيم المساحة
+            child: Column( // استخدام Column لعرض الصورة والنص
               children: [
-                // الصورة تأخذ نصف مساحة الـ Card
+                // الصورة تأخذ عرض الـ Card بالكامل
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.5, // نصف عرض الشاشة
+                  width: double.infinity, // عرض الصورة بالكامل
+                  height: 150, // تحديد ارتفاع الصورة
                   child: Image.network(
                     categorie.imgUrl,
-                    fit: BoxFit.cover,
+                    // fit: BoxFit.cover, 
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(child: Text('خطأ في تحميل الصورة')); // رسالة عند حدوث خطأ في تحميل الصورة
+                    },
                   ),
                 ),
-                // النص يأخذ النصف الآخر
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          categorie.name,
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 4), // مسافة بين الاسم والوصف
-                        Text(
-                          categorie.description,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
+                // النص تحت الصورة
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        categorie.name,
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 4), // مسافة بين الاسم والوصف
+                      Text(
+                        categorie.description,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
                   ),
                 ),
               ],
