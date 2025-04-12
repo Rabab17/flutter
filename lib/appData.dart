@@ -97,10 +97,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/model/categorie.dart';
 
-
 class CategorieService {
-final String apiUrl = 'http://192.168.1.12:3001/host';
-
+  final String apiUrl = 'http://192.168.1.12:3001/host';
 
   Future<List<Categorie>> fetchCategories() async {
     try {
@@ -111,20 +109,13 @@ final String apiUrl = 'http://192.168.1.12:3001/host';
         print("response1 $response");
         // إذا كانت الاستجابة ناجحة
         List<dynamic> data = response.data; // بيانات الـ API
-    return   data.skip(3).map((item) => Categorie.fromJson(item)).toList();
+        return data.skip(3).map((item) => Categorie.fromJson(item)).toList();
       } else {
-           print("error");
+        print("error");
         throw Exception('فشل في تحميل البيانات');
       }
-
-
-
-
-
-
-
     } catch (e) {
-         print("error ");
+      print("error ");
       throw Exception('حدث خطأ: $e');
     }
   }
