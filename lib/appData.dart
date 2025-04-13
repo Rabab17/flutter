@@ -98,7 +98,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app/model/categorie.dart';
 
 class CategorieService {
-  final String apiUrl = 'http://192.168.1.12:3001/host';
+  final String apiUrl = 'http://192.168.1.6:3001/host';
 
   Future<List<Categorie>> fetchCategories() async {
     try {
