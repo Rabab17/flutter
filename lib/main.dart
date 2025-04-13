@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
+import 'package:flutter_app/screens/signUp.dart';
 import 'package:flutter_app/socket.dart';
 
 void main() {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: CategoriesScreen(),
-      home: ChatScreen(),
+      home: SignupScreen(),
     );
   }
 }
