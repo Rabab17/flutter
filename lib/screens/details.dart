@@ -64,151 +64,154 @@ class _detailsState extends State<details> {
 
     return Scaffold(
       appBar: AppBar(title: Nav()),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 400,
-            child: PageView.builder(
-              itemCount: oneHost.images.length,
-              controller: PageController(viewportFraction: 0.95),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 5,
-                    vertical: 15,
-                  ),
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            oneHost.images[index],
-                            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 400,
+              child: PageView.builder(
+                itemCount: oneHost.images.length,
+                controller: PageController(viewportFraction: 0.95),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 15,
+                    ),
+                    child: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              oneHost.images[index],
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        top: 9,
-                        right: 8,
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isFav = !isFav;
-                            });
+                        Positioned(
+                          top: 9,
+                          right: 8,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isFav = !isFav;
+                              });
 
-                            Categorie favoriteItem = Categorie(
-                              id: oneHost.id,
-                              name: oneHost.name.en,
-                              imgUrl: oneHost.images[0],
-                              description:
-                                  oneHost
-                                      .description
-                                      .en, // استخدام الوصف الممرر
-                            );
-                            toggleFavorite(favoriteItem);
-                          },
-                          icon:
-                              !isFav
-                                  ? Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.grey[400],
-                                  )
-                                  : Icon(Icons.favorite),
-                          color: Color(0xFF003B95),
+                              Categorie favoriteItem = Categorie(
+                                id: oneHost.id,
+                                name: oneHost.name.en,
+                                imgUrl: oneHost.images[0],
+                                description:
+                                    oneHost
+                                        .description
+                                        .en, // استخدام الوصف الممرر
+                              );
+                              toggleFavorite(favoriteItem);
+                            },
+                            icon:
+                                !isFav
+                                    ? Icon(
+                                      Icons.favorite_border,
+                                      color: Colors.grey[400],
+                                    )
+                                    : Icon(Icons.favorite),
+                            color: Color(0xFF003B95),
+                          ),
                         ),
-                      ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+              child: Wrap(
+                spacing: 20,
+                runSpacing: 10,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.location_on_rounded, color: Color(0xFF003B95)),
+                      SizedBox(width: 5),
+                      Text(oneHost.location.address.en),
                     ],
                   ),
-                );
-              },
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.airline_seat_individual_suite_rounded,
+                        color: Color(0xFF003B95),
+                      ),
+                      SizedBox(width: 5),
+                      Text(oneHost.location.country.en),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.location_city, color: Color(0xFF003B95)),
+                      SizedBox(width: 5),
+                      Text(oneHost.location.city.en),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+
+                    children: [
+                      Icon(
+                        Icons.phone_android_rounded,
+                        color: Color(0xFF003B95),
+                      ),
+
+                      Text("${oneHost.phone}"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+
+                    children: [
+                      RatingBarIndicator(
+                        rating: 3.5,
+                        itemBuilder:
+                            (context, index) =>
+                                Icon(Icons.star, color: Colors.amber),
+                        itemCount: 5,
+                        itemSize: 30.0,
+                        direction: Axis.horizontal,
+                      ),
+                      Text("${oneHost.averageRating}"),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-            child: Wrap(
-              spacing: 20,
-              runSpacing: 10,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.location_on_rounded, color: Color(0xFF003B95)),
-                    SizedBox(width: 5),
-                    Text(oneHost.location.address.en),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.airline_seat_individual_suite_rounded,
-                      color: Color(0xFF003B95),
-                    ),
-                    SizedBox(width: 5),
-                    Text(oneHost.location.country.en),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.location_city, color: Color(0xFF003B95)),
-                    SizedBox(width: 5),
-                    Text(oneHost.location.city.en),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-
-                  children: [
-                    Icon(Icons.phone_android_rounded, color: Color(0xFF003B95)),
-
-                    Text("${oneHost.phone}"),
-                  ],
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-
-                  children: [
-                    RatingBarIndicator(
-                      rating: 3.5,
-                      itemBuilder:
-                          (context, index) =>
-                              Icon(Icons.star, color: Colors.amber),
-                      itemCount: 5,
-                      itemSize: 30.0,
-                      direction: Axis.horizontal,
-                    ),
-                    Text("${oneHost.averageRating}"),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Center(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: MaterialButton(
-                color: Color(0xFF003B95),
-                textColor: Colors.white,
-                onPressed: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.chat_rounded, color: Colors.white),
-                    SizedBox(width: 10),
-                    Text("Chat With Owner"),
-                  ],
+            Center(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: MaterialButton(
+                  color: Color(0xFF003B95),
+                  textColor: Colors.white,
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.chat_rounded, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text("Chat With Owner"),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
 
-          Expanded(
-            child: SingleChildScrollView(
+            SingleChildScrollView(
               scrollDirection: Axis.vertical,
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
               child: Column(
@@ -279,9 +282,8 @@ class _detailsState extends State<details> {
                 ],
               ),
             ),
-          ),
-          Footer(),
-        ],
+          ],
+        ),
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -302,6 +304,7 @@ class _detailsState extends State<details> {
         },
         child: Icon(Icons.favorite),
       ),
+      bottomNavigationBar: Footer(),
     );
   }
 }
