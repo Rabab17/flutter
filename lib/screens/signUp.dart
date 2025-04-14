@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/screens/EmailToforgetPass.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/loginScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -332,7 +333,10 @@ class _SignupScreenState extends State<SignupScreen> {
             GestureDetector(
               onTap: () {
                 // انتقل إلى صفحة نسيان كلمة المرور
-                Navigator.pushNamed(context, "/forget-password");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmailtoForgetpass()),
+                );
               },
               child: Text(
                 "Forgot password?",
