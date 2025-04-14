@@ -98,7 +98,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app/model/categorie.dart';
 
 class CategorieService {
-  final String apiUrl = 'http://192.168.1.6:3001/host';
+  final String apiUrl = 'http://192.168.1.4:3001/host';
 
   Future<List<Categorie>> fetchCategories() async {
     try {
@@ -106,7 +106,7 @@ class CategorieService {
       final response = await Dio().get(apiUrl); // استخدم Dio بدلاً من http
 
       if (response.statusCode == 200) {
-        print("response1 $response");
+        // print("response1 $response");
         // إذا كانت الاستجابة ناجحة
         List<dynamic> data = response.data; // بيانات الـ API
         return data.skip(3).map((item) => Categorie.fromJson(item)).toList();

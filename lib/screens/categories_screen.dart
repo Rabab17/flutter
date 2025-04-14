@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/categorie.dart';
+import 'package:flutter_app/screens/details.dart';
 import 'package:flutter_app/screens/footer.dart';
 import 'package:flutter_app/screens/nav.dart';
 import '../appData.dart';
@@ -38,10 +39,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(55.0),
-        child: Nav(),
-      ),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(55.0), child: Nav()),
       body: SizedBox(
         height: 800,
         child: Column(
@@ -62,24 +60,28 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 50),
                       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.transparent,
                         shape: BoxShape.rectangle,
-    borderRadius: BorderRadius.circular(40),
-                        border: hovered
-                            ? Border.all(color: Colors.white.withOpacity(0.5), width: 2)
-                            : null,
+                        borderRadius: BorderRadius.circular(40),
+                        border:
+                            hovered
+                                ? Border.all(
+                                  color: Colors.white.withOpacity(0.5),
+                                  width: 2,
+                                )
+                                : null,
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Transform.rotate(
                             angle: item['rotate'],
-                            child: Icon(
-                              item['icon'],
-                              color: Colors.white,
-                            ),
+                            child: Icon(item['icon'], color: Colors.white),
                           ),
                           SizedBox(width: 8),
                           Text(
@@ -100,8 +102,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
-                    return Center(
-                        child: Text('حدث خطأ: ${snapshot.error}'));
+                    return Center(child: Text('حدث خطأ: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return Center(child: Text('لا توجد فئات متاحة'));
                   }
@@ -131,12 +132,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       itemCount: categorieData.length,
                       itemBuilder: (BuildContext context, int index) {
                         final categorie = categorieData[index];
-                        return CategoreItem(
-                          imgUrl: categorie.imgUrl,
-                          name: categorie.name,
-                          description: categorie.description,
-                          id: categorie.id,
-                          onFavoriteToggle: toggleFavorite,
+                        return GestureDetector(
+                          child: CategoreItem(
+                            imgUrl: categorie.imgUrl,
+                            name: categorie.name,
+                            description: categorie.description,
+                            id: categorie.id,
+                            onFavoriteToggle: toggleFavorite,
+                          ),
+                          onTap: () => details(id: categorie.id),
                         );
                       },
                     ),
@@ -144,7 +148,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 },
               ),
             ),
-            Footer()
+            Footer(),
           ],
         ),
       ),
@@ -154,8 +158,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    Favor(id: "Favorites", favorites: favorites),
+                builder:
+                    (context) => Favor(id: "Favorites", favorites: favorites),
               ),
             );
           } else {
@@ -166,8 +170,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         },
         child: Icon(Icons.favorite),
       ),
-
-
     );
   }
 }
