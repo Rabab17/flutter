@@ -4,7 +4,7 @@ import 'package:flutter_app/model/hostByIdModel.dart';
 
 var dio = Dio();
 
-String baseURL = "http://192.168.1.4:3001/";
+String baseURL = "http://192.168.1.5:3001/";
 
 Future<HostByIdModel> getHostById(String id) async {
   // HostByIdModel host;

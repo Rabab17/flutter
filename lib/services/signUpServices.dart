@@ -5,7 +5,7 @@ import 'package:flutter_app/model/signUpUser.dart';
 
 var dio = Dio();
 
-String baseURL = "http://192.168.1.4:3001/";
+String baseURL = "http://192.168.1.5:3001/";
 
 Future<dynamic> signUpUser(SignUpUserModel user) async {
   dynamic token = '';

@@ -7,7 +7,6 @@ import 'package:flutter_app/screens/signUp.dart';
 import 'package:flutter_app/services/loginServices.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
