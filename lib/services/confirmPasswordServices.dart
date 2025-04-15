@@ -11,7 +11,7 @@ Future<dynamic> confirmPassword(
 ) async {
   dynamic message = '';
   try {
-    var res = await dio.post(
+    var res = await dio.patch(
       "${baseURL}user/resetPassword/${token}",
       data: confirm.toJson(),
     );

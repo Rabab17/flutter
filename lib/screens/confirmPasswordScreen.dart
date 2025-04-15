@@ -9,7 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:password_strength/password_strength.dart';
 
 class ConfirmPasswordScreen extends StatefulWidget {
-  const ConfirmPasswordScreen({super.key});
+  final String tokenFromURL;
+  const ConfirmPasswordScreen({super.key, required this.tokenFromURL});
 
   @override
   State<ConfirmPasswordScreen> createState() => _ConfirmPasswordScreenState();
@@ -237,7 +238,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                     isButtonEnabled
                         ? () {
                           if (validateInputs()) {
-                            // forgetPasswordUser();
+                            confirmPasswordForUser(widget.tokenFromURL);
                           }
                         }
                         : null,
