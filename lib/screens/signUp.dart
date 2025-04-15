@@ -208,7 +208,7 @@ class _SignupScreenState extends State<SignupScreen> {
               controller: _password,
               obscureText: !isVisible,
               keyboardType: TextInputType.visiblePassword,
-              maxLength: 10,
+              // maxLength: 10,
               textAlign: TextAlign.center,
               textInputAction: TextInputAction.next,
               style: TextStyle(
@@ -217,7 +217,7 @@ class _SignupScreenState extends State<SignupScreen> {
               decoration: InputDecoration(
                 labelText: "Password",
                 labelStyle: GoogleFonts.lora(color: const Color(0xFF003B95)),
-                counterText: "${_password.text.length}/10",
+                // counterText: "${_password.text.length}/10",
                 suffix: IconButton(
                   onPressed: () {
                     setState(() {

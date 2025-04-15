@@ -48,7 +48,7 @@ class _EmailtoForgetpassState extends State<EmailtoForgetpass> {
         if (messageFromBackend != null) {
           print("message of forgetPassword in the screen $messageFromBackend");
         } else {
-          print("still there is an error");
+          _showErrorDialog();
         }
       } catch (e) {
         print(" the catch of the error in the forget screen $e");

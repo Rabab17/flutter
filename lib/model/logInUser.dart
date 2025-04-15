@@ -1,6 +1,6 @@
 class LoginUserModel {
   String email;
-  String? password; // Make password nullable
+  String? password;
 
   LoginUserModel({required this.email, this.password});
 
