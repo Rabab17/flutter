@@ -43,13 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
     return isValid;
   }
 
-  void _showErrorDialog() {
+  void _showErrorDialog(String text) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("خطأ"),
-          content: Text("يرجى إدخال بيانات صحيحة."),
+          content: Text(text),
           actions: <Widget>[
             TextButton(
               child: Text("موافق"),
@@ -72,28 +72,32 @@ class _LoginScreenState extends State<LoginScreen> {
 
       var result = await loginUser(userModel);
       userToken = result;
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('token', userToken);
+      if (userToken != "please enter valid or password") {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', userToken);
 
-      String? savedToken = prefs.getString('token');
+        String? savedToken = prefs.getString('token');
 
-      if (savedToken != null) {
-        print("Logged in with saved token in preferences : $savedToken");
-      }
+        if (savedToken != null) {
+          print("Logged in with saved token in preferences : $savedToken");
+        }
 
-      setState(() {
-        loading = false;
-      });
+        setState(() {
+          loading = false;
+        });
 
-      print("user token in the login page $userToken");
-      // يمكنك إضافة منطق للتحقق من نجاح عملية التسجيل هنا
-      if (userToken != "error") {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CategoriesScreen()),
-        );
+        print("user token in the login page $userToken");
+        // يمكنك إضافة منطق للتحقق من نجاح عملية التسجيل هنا
+        if (userToken != "error") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CategoriesScreen()),
+          );
+        } else {
+          _showErrorDialog("يرجى إدخال بيانات صحيحة.");
+        }
       } else {
-        _showErrorDialog();
+        _showErrorDialog("please enter valid email or password");
       }
     }
   }
@@ -155,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _password,
               obscureText: !isVisible,
               keyboardType: TextInputType.visiblePassword,
-              maxLength: 10,
+              // maxLength: 10,
               textAlign: TextAlign.center,
               textInputAction: TextInputAction.next,
 

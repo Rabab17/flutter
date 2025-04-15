@@ -35,7 +35,7 @@ Future<void> main() async {
         builder: (context, state) {
           final token = state.pathParameters['token'];
           print("TOKEN from URL: $token");
-          return ConfirmPasswordScreen(); // أو ConfirmPasswordScreen(token: token!)
+          return ConfirmPasswordScreen(tokenFromURL: token!);
         },
       ),
     ],
