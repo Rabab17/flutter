@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/categories_screen.dart';
 import 'package:flutter_app/screens/confirmPasswordScreen.dart';
+import 'package:flutter_app/screens/profileScreen.dart';
 import 'package:flutter_app/screens/signUp.dart';
 import 'package:flutter_app/screens/loginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +30,7 @@ Future<void> main() async {
     routes: [
       GoRoute(path: '/', builder: (context, state) => CategoriesScreen()),
       GoRoute(path: '/signup', builder: (context, state) => SignupScreen()),
+      GoRoute(path: '/profile', builder: (context, state) => ProfileScreen()),
       GoRoute(path: '/login', builder: (context, state) => LoginScreen()),
       GoRoute(
         path: '/confirmPassword/:token',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/profileScreen.dart';
 
 class Footer extends StatelessWidget {
   Footer({super.key});
@@ -16,7 +17,8 @@ class Footer extends StatelessWidget {
       padding: EdgeInsets.all(10),
       color: Color(0xFF003B95), // خلفية للـ Footer
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // توزيع العناصر بالتساوي
+        mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly, // توزيع العناصر بالتساوي
         children: List.generate(items.length, (index) {
           final item = items[index]; // الوصول إلى كل عنصر في الـ List
           return MouseRegion(
@@ -27,10 +29,21 @@ class Footer extends StatelessWidget {
               children: [
                 Transform.rotate(
                   angle: item['rotate'], // تدوير الأيقونة
-                  child: Icon(
-                    item['icon'], // الأيقونة
-                    color: Colors.white,
-                    size: 30,
+                  child: IconButton(
+                    icon: Icon(color: Colors.white, size: 30, item['icon']),
+                    // الأيقونة
+                    onPressed: () {
+                      if (item['icon'] == Icons.person_add) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ),
+                        );
+                      } else {
+                        null;
+                      }
+                    },
                   ),
                 ),
                 SizedBox(height: 5),

@@ -69,35 +69,39 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _email.text,
         password: _password.text,
       );
+      try {
+        var result = await loginUser(userModel);
+        userToken = result;
+        if (userToken != "please enter valid or password" &&
+            userToken != "error") {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('token', userToken);
 
-      var result = await loginUser(userModel);
-      userToken = result;
-      if (userToken != "please enter valid or password") {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('token', userToken);
+          String? savedToken = prefs.getString('token');
 
-        String? savedToken = prefs.getString('token');
+          if (savedToken != null) {
+            print("Logged in with saved token in preferences : $savedToken");
+            print("user token in the login page $userToken");
+          }
 
-        if (savedToken != null) {
-          print("Logged in with saved token in preferences : $savedToken");
-        }
+          setState(() {
+            loading = false;
+          });
 
-        setState(() {
-          loading = false;
-        });
-
-        print("user token in the login page $userToken");
-        // يمكنك إضافة منطق للتحقق من نجاح عملية التسجيل هنا
-        if (userToken != "error") {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => CategoriesScreen()),
           );
-        } else {
+        }
+
+        if (userToken == "please enter valid or password") {
+          _showErrorDialog("please enter valid email or password");
+        }
+        if (userToken == "error") {
           _showErrorDialog("يرجى إدخال بيانات صحيحة.");
         }
-      } else {
-        _showErrorDialog("please enter valid email or password");
+      } catch (e) {
+        print("error from login screen $e ");
       }
     }
   }

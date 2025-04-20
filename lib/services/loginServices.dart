@@ -2,21 +2,21 @@ import 'dart:core';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_app/model/logInUser.dart';
+import 'baseURLServices.dart';
 
 var dio = Dio();
 
-String baseURL = "http://192.168.1.5:3001/";
+String baseURL = returnBaseURLFun();
 
 Future<dynamic> loginUser(LoginUserModel user) async {
   dynamic token = '';
   try {
     var res = await dio.post("${baseURL}user/login", data: user.toJson());
-    print(res.data);
-    token = res.data; // احصل على البيانات من الاستجابة
-    // print("the token only ${token['token']}");
+    // print(res.data);
+    token = res.data;
     return token;
   } catch (e) {
-    print(e);
+    print("an error in login sevices ${e}");
     return "error";
   }
 }
