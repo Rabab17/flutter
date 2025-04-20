@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/model/confirmPasswordMode.dart';
-import 'package:flutter_app/model/logInUser.dart';
+import 'baseURLServices.dart';
 
 var dio = Dio();
-String baseURL = "http://192.168.1.5:3001/";
+String baseURL = returnBaseURLFun();
 
 Future<dynamic> confirmPassword(
   ConfirmPasswordModel confirm,
@@ -12,15 +12,15 @@ Future<dynamic> confirmPassword(
   dynamic message = '';
   try {
     var res = await dio.patch(
-      "${baseURL}user/resetPassword/${token}",
+      "${baseURL}user/resetPassword/$token",
       data: confirm.toJson(),
     );
     message = res.data;
-    print("the res is ${res} , message is ${message}");
+    // print("the res is $res , message is $message");
 
     return message;
   } catch (e) {
-    print("the catch from confirmPassword sevices ${e}");
+    print("the catch from confirmPassword sevices $e");
     return "error";
   }
 }

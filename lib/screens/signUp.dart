@@ -9,7 +9,6 @@ import 'package:flutter_app/services/signUpServices.dart';
 // --------------------------------------
 import 'package:password_strength/password_strength.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});

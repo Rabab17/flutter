@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/model/logInUser.dart';
+import 'baseURLServices.dart';
 
 var dio = Dio();
 
-String baseURL = "http://192.168.1.5:3001/";
+String baseURL = returnBaseURLFun();
 
 Future<dynamic> forgetPassword(LoginUserModel user) async {
   dynamic message = '';
@@ -14,7 +15,7 @@ Future<dynamic> forgetPassword(LoginUserModel user) async {
       data: user.toJson(),
     );
     message = res.data;
-    print("the res is ${res} , message is ${message}");
+    // print("the res is ${res} , message is ${message}");
     return message;
   } catch (e) {
     print(e);

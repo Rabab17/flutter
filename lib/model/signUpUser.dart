@@ -1,22 +1,27 @@
 class SignUpUserModel {
   String userName;
   String email;
-  String password;
-  String phoneNumber;
-
+  String? password;
+  String? phoneNumber;
+  String? id;
+  int? iat;
   SignUpUserModel({
     required this.userName,
     required this.email,
-    required this.password,
-    required this.phoneNumber,
+    this.password,
+    this.phoneNumber,
+    this.id,
+    this.iat,
   });
 
   Map<String, dynamic> toJson() {
     return {
       'userName': userName,
       'email': email,
-      'password': password,
-      'phoneNumber': phoneNumber,
+      if (password != null) 'password': password,
+      if (phoneNumber != null) 'phoneNumber': phoneNumber,
+      if (id != null) 'id': id,
+      if (iat != null) 'iat': iat,
     };
   }
 }

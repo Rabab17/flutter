@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/model/confirmPasswordMode.dart';
-import 'package:flutter_app/model/logInUser.dart';
 import 'package:flutter_app/screens/nav.dart';
 import 'package:flutter_app/services/confirmPasswordServices.dart';
-import 'package:flutter_app/services/forgetPasswordServices.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password_strength/password_strength.dart';
 
